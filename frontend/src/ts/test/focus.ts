@@ -8,6 +8,10 @@ import * as TimerProgress from "./timer-progress";
 const unfocusPx = 3;
 let state = false;
 
+export function isFocus(): boolean {
+  return state;
+}
+
 export function set(foc: boolean, withCursor = false): void {
   if (foc && !state) {
     state = true;
