@@ -2,6 +2,7 @@ import * as PageController from "./page-controller";
 import * as TestUI from "../test/test-ui";
 import * as PageTransition from "../states/page-transition";
 import { Auth, isAuthenticated } from "../firebase";
+import { isFocus } from "../test/focus";
 
 //source: https://www.youtube.com/watch?v=OstALBk-jTc
 // https://www.youtube.com/watch?v=OstALBk-jTc
@@ -202,7 +203,8 @@ window.addEventListener("popstate", () => {
 document.addEventListener("DOMContentLoaded", () => {
   document.body.addEventListener("click", (e) => {
     const target = e?.target as HTMLLinkElement;
-    if (target.matches("[router-link]") && target?.href) {
+    if (!isFocus() && target.matches("[router-link]") && target?.href) {
+      console.log("NOT IN FOCUS");
       e.preventDefault();
       navigate(target.href);
     }
